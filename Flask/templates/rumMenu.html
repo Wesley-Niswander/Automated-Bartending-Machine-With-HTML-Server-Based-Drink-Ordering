@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='Base_Format.css')}}">
+    <title>Document</title>
+ 
+</head>
+<body>
+    Rum
+    <H1>
+        <img src="{{url_for('static', filename='/images/rumMenu_top.jpeg')}}" width="300" height="200"/>
+    </H1> 
+    <H2>
+        <label for="Name">Name:</label>
+        <input type = "text" id="Name" name="Name" placeholder="Name for order...">
+    </H2> 
+    <H3>
+        <button class="button" name = "Rum and Coke" onclick="location.href= '/order/Rum and Coke/-'+document.getElementById('Name').value;"> Rum and Coke </button>
+    </H3>
+    <H4>
+        <button class="button" name = "Daiquiri" onclick="location.href= '/order/Daiquiri/-'+document.getElementById('Name').value;"> Daiquiri </button>
+    </H4>
+    <H5>
+        <button class="button" name = "Long Island" onclick="location.href= '/order/Long Island/-'+document.getElementById('Name').value;"> Long Island </button>
+    </H5>
+    <H6>
+        <button class="button" name = "Piña Colada" onclick="location.href= '/order/Piña Colada/-'+document.getElementById('Name').value;"> Piña Colada </button>
+    </H6>
+    <H7>
+        <button class="button" name = "Hurricane" onclick="location.href= '/order/Hurricane/-'+document.getElementById('Name').value;"> Hurricane </button>
+    </H7>
+    <H8>
+        <button class="button" name = "Rum Shot" onclick="location.href= '/order/Rum Shot/-'+document.getElementById('Name').value;"> Rum Shot </button>
+    </H8>
+</body>
+</html>

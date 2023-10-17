@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='Base_Format.css')}}">
+    <title>Document</title>
+ 
+</head>
+<body>
+    Barvis 3.0 Bartender
+    <H1>
+        <img src="{{url_for('static', filename='/images/mainMenu_Bar.jpeg')}}" width="300" height="200"/>
+    </H1>   
+    <H2>
+        <button class="button" name = "Vodka" onclick="location.href= '/Vodka';"> Vodka </button>
+    </H2>
+    <H3>
+        <button class="button" name = "Tequila" onclick="location.href= '/Tequila';"> Tequila </button>
+    </H3>
+    <H4>
+        <button class="button" name = "Rum" onclick="location.href= '/Rum';"> Rum </button>
+    </H4>
+    <H5>
+        <button class="button" name = "Gin" onclick="location.href= '/Gin';"> Gin </button>
+    </H5>
+
+</body>
+</html>

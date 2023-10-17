@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='Base_Format.css')}}">
+    <title>Document</title>
+ 
+</head>
+<body>
+    Gin
+    <H1>
+        <img src="{{url_for('static', filename='/images/ginMenu_top.jpeg')}}" width="300" height="200"/>
+    </H1> 
+    <H2>
+        <label for="Name">Name:</label>
+        <input type = "text" id="Name" name="Name" placeholder="Name for order...">
+    </H2> 
+    <H3>
+        <button class="button" name = "Gin Fizz" onclick="location.href= '/order/Gin Fizz/-'+document.getElementById('Name').value;"> Gin Fizz </button>
+    </H3>
+    <H4>
+        <button class="button" name = "Gin Rickey" onclick="location.href= '/order/Gin Rickey/-'+document.getElementById('Name').value;"> Gin Rickey </button>
+    </H4>
+    <H5>
+        <button class="button" name = "Long Island" onclick="location.href= '/order/Long Island/-'+document.getElementById('Name').value;"> Long Island </button>
+    </H5>
+    <H6>
+        <button class="button" name = "Pegu Club" onclick="location.href= '/order/Pegu Club/-'+document.getElementById('Name').value;"> Pegu Club </button>
+    </H6>
+    <H7>
+        <button class="button" name = "Gin Shot" onclick="location.href= '/order/Gin Shot/-'+document.getElementById('Name').value;"> Gin Shot </button>
+    </H7>
+</body>
+</html>

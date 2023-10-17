@@ -1,0 +1,1 @@
+/usr/bin/python "/home/wesniswander/Documents/Barvis_3/Main GUI.py"

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='Base_Format.css')}}">
+    <title>Document</title>
+ 
+</head>
+<body>
+    Tequila
+    <H1>
+        <img src="{{url_for('static', filename='/images/tequilaMenu_top.jpeg')}}" width="300" height="200"/>
+    </H1> 
+    <H2>
+        <label for="Name">Name:</label>
+        <input type = "text" id="Name" name="Name" placeholder="Name for order...">
+    </H2> 
+    <H3>
+        <button class="button" name = "Tequila Sunrise" onclick="location.href= '/order/Tequila Sunrise/-'+document.getElementById('Name').value;"> Tequila Sunrise </button>
+    </H3>
+    <H4>
+        <button class="button" name = "Long Island" onclick="location.href= '/order/Long Island/-'+document.getElementById('Name').value;"> Long Island </button>
+    </H4>
+    <H5>
+        <button class="button" name = "Margarita" onclick="location.href= '/order/Margarita/-'+document.getElementById('Name').value;"> Margarita </button>
+    </H5>
+    <H6>
+        <button class="button" name = "Tequila Shot" onclick="location.href= '/order/Tequila Shot/-'+document.getElementById('Name').value;"> Tequila Shot </button>
+    </H6>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="QRCode">
+    <file>QRCode.png</file>
+  </qresource>
+  <qresource prefix="Image">
+    <file>GUIimage.jpeg</file>
+  </qresource>
+  <qresource prefix="background">
+    <file>summer-product-backdrop-blue-sea-drink.jpg</file>
+  </qresource>
+</RCC>

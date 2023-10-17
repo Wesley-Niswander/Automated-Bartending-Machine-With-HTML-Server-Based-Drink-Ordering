@@ -1,0 +1,14 @@
+html{
+    background-color:rgb(201, 102, 44);
+}
+.button{
+    background-color:aquamarine;
+    border: none;
+    color: black;
+    padding:15px 32px;
+    text-align: center;
+    text-decoration:none;
+    display:inline-block;
+    border-radius: 4px;
+    font-size:16px;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='Base_Format.css')}}">
+    <title>Document</title>
+ 
+</head>
+<body>
+    Vodka
+    <H1>
+        <img src="{{url_for('static', filename='/images/vodkaMenu_top.jpeg')}}" width="300" height="200"/>
+    </H1> 
+    <H2>
+        <label for="Name">Name:</label>
+        <input type = "text" id="Name" name="Name" placeholder="Name for order...">
+    </H2> 
+    <H3>
+        <button class="button" name = "Vodka Shot" onclick="location.href= '/order/Vodka Shot/-'+document.getElementById('Name').value;"> Vodka Shot </button>
+        <button class="button" name = "Screwdriver" onclick="location.href= '/order/Screwdriver/-'+document.getElementById('Name').value;"> Screwdriver </button>
+    </H3>
+    <H4>
+        <button class="button" name = "Vodka Cranberry" onclick="location.href= '/order/Vodka Cranberry/-'+document.getElementById('Name').value;"> Vodka Cranberry </button>
+        <button class="button" name = "Bay Breeze" onclick="location.href= '/order/Bay Breeze/-'+document.getElementById('Name').value;"> Bay Breeze </button>
+    </H4>
+    <H5>
+        <button class="button" name = "Madras" onclick="location.href= '/order/Madras/-'+document.getElementById('Name').value;"> Madras </button>
+        <button class="button" name = "Long Island" onclick="location.href= '/order/Long Island/-'+document.getElementById('Name').value;"> Long Island </button>
+    </H5>
+    <H6>
+        <button class="button" name = "Cosmopolitan" onclick="location.href= '/order/Cosmopolitan/-'+document.getElementById('Name').value;"> Cosmopolitan </button>
+        <button class="button" name = "Kamikaze" onclick="location.href= '/order/Kamikaze/-'+document.getElementById('Name').value;"> Kamikaze </button>
+    </H6>
+</body>
+</html>
