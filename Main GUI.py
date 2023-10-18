@@ -1,11 +1,9 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow
-# from PyQt5.uic import loadUi
-#... plus some other pyqt imports
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
 from main_interface import Ui_Barvis3 
 #Import the class generated from qt designer using pyuic5 -o PythonFile.pyy QTDesignerFile.ui
 #Also need to generate a resource file (holds image data and stuff) pyrcc5 resources.qrc -o resources.py 
-from Barvis_3 import runBarvis
+from HardwareThread import hardwareThread
 from Print_Drink_Info import printInfo
 import requests
 
@@ -38,9 +36,22 @@ class Window(QMainWindow, Ui_Barvis3):
     def order(self):
         if self.drink != "no new orders":
             print("making order...")
-            runBarvis(self.drink)
+            hardware = hardwareThread()
+            if hardware.running:
+                print("Machine busy, please wait...")
+                msg = QMessageBox()
+                msg.setWindowTitle("Barvis")
+                msg.setText("Machine busy, please wait...")
+                x = msg.exec_()
+            else:
+                hardware.setDrink(self.drink)
+                hardware.start()
         else:
             print("no new orders")
+            msg = QMessageBox()
+            msg.setWindowTitle("Barvis")
+            msg.setText("No new orders!\nTo place an order\nplease scan the QR code.")
+            x = msg.exec_()
         
 app = QApplication(sys.argv)
 win = Window()
