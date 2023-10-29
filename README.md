@@ -28,16 +28,19 @@ The machine's user interface was built using PYQT5 and [QT Designer]([url](https
 
 <img width="188" alt="image" src="https://github.com/Wesley-Niswander/Automated-Bartending-Machine-With-HTML-Server-Based-Drink-Ordering/assets/147947724/abe5505a-3dc4-4a68-91d5-5d3b3f801cf0">
 
-State machine
+The runBarvis function operates as a finite state machine.
 
-The runBarvis function operates as a finite state machine. 
 |State|Function|
 |---|---|
 |Load|Loads the recipe data from the .json file associated with the drink name|
 |Home|Runs the stepper motor towards the home position while continually checking the limit switch. When the limit switch is hit, the motors current position is set to zero steps|
 |GetNext|Retrieves the next ingredient from the recipe data. This is done by iteratively checking all possible key names until an ingredient is found.|
 |Move|Drives the stepper motor to move the platform below the valve of the current ingredient.|
-|Dispense|Sends the weight to dispense to the Arduino which is opens the valve and monitors the load cell in the platform. Once the target weigth is reached, the Arduino closes the valve and reports back to the main computer that the opertaion is complete|
+|Dispense|Sends the weight to dispense to the Arduino which is opens the valve and monitors the load cell in the platform. Once the target weight is reached, the Arduino closes the valve and reports back to the main computer that the operation is complete|
+
+The function expects one input, 'drink' when called. It consists of some initial setting up of variables before entering a while loop. This while loop runs repeatedly until the operation is complete and the drink is finished. The while loop contains an if, elif statement which continually checks the value of the variable 'state' to perform the appropriate steps in sequence. The initial value of 'state' is "Load." During the load state the recipe .json file sharing the name of the variable 'drink' is loaded into a dictionary named 'recipe.' The 'recipe' dictionary contains key-value pairs with ingredient names and weights. At the end of the "Load" operation 'state' is set to 'Home.' During the homing sequence the stepper motor drives the platform to the left until a limit switch is hit. The postion of the motor is then set to zero steps and 'state' is set to 'GetNext.' During the "get next" state a list of ingredient keys (the 'key' variable) is iteritively checked against the keys in the 'recipe' data. When a key is found the weight value is extracted. The weight and 'key' index (meaning position in 'keys' list) are retained. The state is then set to 'Move.'
+
+
 Multithreading
 
 This is accomplished by instantiating and running an instance of the hardwareThread class. This is a subclass of Thread with two important changes. 1) the run method is overridden to call a specialized function (runBarvis) responsible for driving the physical hardware (motor, valves, etc). This function behaves as a finite state machine
