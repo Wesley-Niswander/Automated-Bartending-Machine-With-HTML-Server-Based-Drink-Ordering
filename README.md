@@ -43,8 +43,8 @@ The physical hardware of the machine is driven by IO exposed by Le Potato's 40 p
   |Arduino|Handles valves and load cell|Dispensing_Class.py/dispenser|ttyAML6 (uarta)|
 
 It is important to note that some of this hardware doesn't work by default. It is necessary to apply the correct overlays by running 'Overlays.sh.' This contains commands to enable the pwm for the motor, the uart for the Arduino, and set the motor disable pin high (to limit power consumption/heat). This file should be added to crontab so that it runs at boot time. This can be accomplished with the following bash commands.
-  crontab -e
-  @reboot sh (insert path here)/Overlays.sh
+|crontab -e|
+|@reboot sh (insert path here)/Overlays.sh|
 
 Below is a more detailed description of the three main hardware components
 
