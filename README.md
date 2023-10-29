@@ -30,6 +30,14 @@ The machine's user interface was built using PYQT5 and [QT Designer]([url](https
 
 State machine
 
+The runBarvis function operates as a finite state machine. 
+|State|Function|
+|---|---|
+|Load|Loads the recipe data from the .json file associated with the drink name|
+|Home|Runs the stepper motor towards the home position while continually checking the limit switch. When the limit switch is hit, the motors current position is set to zero steps|
+|GetNext|Retrieves the next ingredient from the recipe data. This is done by iteratively checking all possible key names until an ingredient is found.|
+|Move|Drives the stepper motor to move the platform below the valve of the current ingredient.|
+|Dispense|Sends the weight to dispense to the Arduino which is opens the valve and monitors the load cell in the platform. Once the target weigth is reached, the Arduino closes the valve and reports back to the main computer that the opertaion is complete|
 Multithreading
 
 This is accomplished by instantiating and running an instance of the hardwareThread class. This is a subclass of Thread with two important changes. 1) the run method is overridden to call a specialized function (runBarvis) responsible for driving the physical hardware (motor, valves, etc). This function behaves as a finite state machine
@@ -42,13 +50,12 @@ The physical hardware of the machine is driven by IO exposed by Le Potato's 40 p
   |Stepper Motor|Moves platform|Stepper_class.py/step|pwm-ef (enabled as pwmchip0), GPIO chip 1, pin 84, GPIO chip 1, pin 86|
   |Arduino|Handles valves and load cell|Dispensing_Class.py/dispenser|ttyAML6 (uarta)|
 
-It is important to note that some of this hardware doesn't work by default. It is necessary to apply the correct overlays by running 'Overlays.sh.' This contains commands to enable the pwm for the motor, the uart for the Arduino, and set the motor disable pin high (to limit power consumption/heat). This file should be added to crontab so that it runs at boot time. This can be accomplished with the following bash commands.
-|crontab -e|
-|@reboot sh (insert path here)/Overlays.sh|
+It is important to note that some of this hardware doesn't work by default. It is necessary to apply the correct overlays by running 'Overlays.sh.' This contains commands to enable the pwm for the motor, the uart for the Arduino, and set the motor disable pin high (to limit power consumption/heat). This file should be added to crontab so that it runs at boot time. This can be accomplished with the following bash commands (crontab -e) (@reboot sh (insert path here)/Overlays.sh).
 
 Below is a more detailed description of the three main hardware components
 
 Limit Switch
+The limit switch is used during the homing state of runBarvis. During this time the plat
 
 Stepper Motor
 
