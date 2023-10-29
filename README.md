@@ -28,12 +28,29 @@ The machine's user interface was built using PYQT5 and [QT Designer]([url](https
 
 <img width="188" alt="image" src="https://github.com/Wesley-Niswander/Automated-Bartending-Machine-With-HTML-Server-Based-Drink-Ordering/assets/147947724/abe5505a-3dc4-4a68-91d5-5d3b3f801cf0">
 
-The physical hardware of the machine is driven by the runBarvis function. This function drives IO exposed by Le Potato's 40 pin header. 
+State machine
+
+Multithreading
+
+This is accomplished by instantiating and running an instance of the hardwareThread class. This is a subclass of Thread with two important changes. 1) the run method is overridden to call a specialized function (runBarvis) responsible for driving the physical hardware (motor, valves, etc). This function behaves as a finite state machine
+
+The physical hardware of the machine is driven by IO exposed by Le Potato's 40 pin header. 
+
   |Component|Function|Class Definintion|Le Potato Hardware|
   |----------|-----------|--------------------|---|
   |Limit Switch|Platform homing|GPIO_class.py/gpioGET|GPIO chip 1, pin 98|
-  |Stepper Motor|Moves platform|Stepper_class.py/step|pwm-ef (enabled as pwmchip0)|
+  |Stepper Motor|Moves platform|Stepper_class.py/step|pwm-ef (enabled as pwmchip0), GPIO chip 1, pin 84, GPIO chip 1, pin 86|
   |Arduino|Handles valves and load cell|Dispensing_Class.py/dispenser|ttyAML6 (uarta)|
 
+It is important to note that some of this hardware doesn't work by default. It is necessary to apply the correct overlays by running 'Overlays.sh.' This contains commands to enable the pwm for the motor, the uart for the Arduino, and set the motor disable pin high (to limit power consumption/heat). This file should be added to crontab so that it runs at boot time. This can be accomplished with the following bash commands.
+  crontab -e
+  @reboot sh (insert path here)/Overlays.sh
 
-This is accomplished by instantiating and running an instance of the hardwareThread class. This is a subclass of Thread with two important changes. 1) the run method is overridden to call a specialized function (runBarvis) responsible for driving the physical hardware (motor, valves, etc). This function behaves as a finite state machine
+Below is a more detailed description of the three main hardware components
+
+Limit Switch
+
+Stepper Motor
+
+Arduino
+
