@@ -4,7 +4,7 @@ Automated bartending machine which can pour 21 separate drinks. Users place orde
 -Overview
 
 -System
-[Le Potato]([url](https://libre.computer/products/aml-s905x-cc/))
+The AML-S905X-CC, aka [Le Potato]([url](https://libre.computer/products/aml-s905x-cc/)) single board computer was used to run the server, gui, and hardware. The board was loaded with Rasberry Pi OS. An additional Arduino Uno was used to extend the IO of the system.
 
 -Main GUI
 
@@ -21,6 +21,8 @@ The machine's user interface was built using PYQT5 and [QT Designer]([url](https
 ![image](https://github.com/Wesley-Niswander/Automated-Bartending-Machine-With-HTML-Server-Based-Drink-Ordering/assets/147947724/3fdeeb46-c249-4180-ae62-a6ca25e18647)
 
 ![image](https://github.com/Wesley-Niswander/Automated-Bartending-Machine-With-HTML-Server-Based-Drink-Ordering/assets/147947724/2311271f-287a-45e8-8e60-ef06a45c4f44)
+
+The HTML based ordering system was created using [Flask]([url](https://flask.palletsprojects.com/en/3.0.x/)). This application is run seperately from the main gui within its' own virtual environment. The menu system contains one main menu linking to several sub-menus based on liquor type (i.e  vodka, gin, rum, etc.). Each sub-menu has several buttons labeled with different drink names as well as a text field where the user can enter a name for the order. Once the user enters their name and selects the menu item of their choice the server routes to the endpoint responsible for ordering and passes along the drink and user names ( i.e. "/orders/<drink>/<user>"). Here the drink and name are stored in a local sql database responible for storing ordering information until needed by the main gui application. This database acts as a 'first-in-first-out' queue where each line in the queue is assigned an order number based on the order it is added. A seperate endpoint ("/getNextOrder") is used for retrieving orders from this queue. This is accessed by the main gui application when the user clicks the 'get next order' button at the machine. When this happends the contents of the order with the lowest order number are returned and the order line is deleted from the queue. 
 
 -Machine Operation
 
@@ -63,13 +65,4 @@ The physical hardware of the machine is driven by IO exposed by Le Potato's 40 p
   |Arduino|Handles valves and load cell|Dispensing_Class.py/dispenser|ttyAML6 (uarta)|
 
 It is important to note that some of this hardware doesn't work by default. It is necessary to apply the correct overlays by running 'Overlays.sh.' This contains commands to enable the pwm for the motor, the uart for the Arduino, and set the motor disable pin high (to limit power consumption/heat). This file should be added to crontab so that it runs at boot time. This can be accomplished with the following bash commands (crontab -e) (@reboot sh (insert path here)/Overlays.sh).
-
-Below is a more detailed description of the three main hardware components
-
-Limit Switch
-The limit switch is used during the homing state of runBarvis. During this time the plat
-
-Stepper Motor
-
-Arduino
 
