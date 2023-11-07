@@ -66,3 +66,4 @@ The physical hardware of the machine is driven by IO exposed by Le Potato's 40 p
 
 It is important to note that some of this hardware doesn't work by default. It is necessary to apply the correct overlays by running 'Overlays.sh.' This contains commands to enable the pwm for the motor, the uart for the Arduino, and set the motor disable pin high (to limit power consumption/heat). This file should be added to crontab so that it runs at boot time. This can be accomplished with the following bash commands (crontab -e) (@reboot sh (insert path here)/Overlays.sh).
 
+Note on images: The images used in this application are semi-random images pulled from Google images. Within the context of my own use I am assuming fair use. However, I didn't include these in this repo over licensing/copyright concerns. Just be aware that the images will need to be replaced or the code updated accordingly for your own use.
